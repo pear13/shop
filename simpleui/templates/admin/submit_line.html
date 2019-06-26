@@ -1,0 +1,14 @@
+{% load i18n admin_urls %}
+<div class="submit-row">
+<button type="button" class="layui-btn layui-btn-normal" onclick="window.history.go(-1)" style="float: left;margin-right: 10px;margin-bottom: 10px;">返回</button>
+{% if show_save %}<input type="submit" class="layui-btn layui-btn-normal" value="{% trans 'Save' %}" class="default" name="_save" />{% endif %}
+{% if show_delete_link %}
+    {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+    <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}" type="button" class="layui-btn layui-btn-danger">{% trans "Delete" %}</a></p>
+{#    <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}"><button class="layui-btn layui-btn-danger">{% trans "Delete" %}</button></a></p>#}
+{% endif %}
+<input name="{{ is_popup_var }}" value=1 type="hidden">
+{% if show_save_as_new %}<input type="submit" class="layui-btn layui-btn-normal" value="{% trans 'Save as new' %}" name="_saveasnew"/>{% endif %}
+{% if show_save_and_add_another %}<input type="submit" class="layui-btn layui-btn-normal" value="{% trans 'Save and add another' %}" name="_addanother" />{% endif %}
+{% if show_save_and_continue %}<input type="submit" class="layui-btn layui-btn-normal" value="{% trans 'Save and continue editing' %}" name="_continue" />{% endif %}
+</div>
